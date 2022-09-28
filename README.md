@@ -23,7 +23,7 @@ What to expect from version 2.0:
 
 [![Backers on Open Collective](https://opencollective.com/esp-rfid/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/esp-rfid/sponsors/badge.svg)](#sponsors) [![Chat at https://gitter.im/esp-rfid/Lobby](https://badges.gitter.im/esp-rfid.svg)](https://gitter.im/esp-rfid/Lobby) [![Build Status](https://travis-ci.org/esprfid/esp-rfid.svg?branch=stable)](https://travis-ci.org/esprfid/esp-rfid) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d475052a09bd4865bc2654f524614cba)](https://www.codacy.com/app/omersiar/esp-rfid?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=esprfid/esp-rfid&amp;utm_campaign=Badge_Grade) [![BCH compliance](https://bettercodehub.com/edge/badge/esprfid/esp-rfid?branch=stable)](https://bettercodehub.com/) [![Bountysource](https://api.bountysource.com/badge/team?team_id=242217)](https://salt.bountysource.com/checkout/amount?team=esp-rfid)
 
-Access Control system using a cheap MFRC522, PN532 RFID, RDM6300 readers or Wiegand RFID readers and Espressif's ESP8266 Microcontroller. 
+Access Control system using a cheap MFRC522, PN532 RFID, RDM6300 readers or Wiegand RFID readers and Espressif's ESP8266 Microcontroller.
 
 [See Demo Here](https://bitadvise.com/esp-rfid/)
 
@@ -153,7 +153,7 @@ When testing locally, use the password ```neo``` for admin capabilities.
 
 The following table shows the typical pin layout used for connecting readers hardware to ESP:
 
-| ESP8266 | NodeMcu/WeMos | Wiegand | PN532 | MFRC522 | RDM6300 | 
+| ESP8266 | NodeMcu/WeMos | Wiegand | PN532 | MFRC522 | RDM6300 |
 |--------:|:-------------:|:-------:|:-----:|:-------:|:-------:|
 | GPIO-15 | D8            |         | SS    | SDA/SS  |         |
 | GPIO-13 | D7            | D0      | MOSI  | MOSI    |         |
@@ -266,7 +266,7 @@ Donations **transparently** processed by **[Open Collective](https://opencollect
 
 ## Contributors
 
-This project exists thanks to all the people who contribute. 
+This project exists thanks to all the people who contribute.
 <a href="https://github.com/esprfid/esp-rfid/graphs/contributors"><img src="https://opencollective.com/esp-rfid/contributors.svg?width=890&button=false" /></a>
 
 

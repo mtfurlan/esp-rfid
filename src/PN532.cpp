@@ -41,7 +41,7 @@
     ----------------------------------------------------------
 
     Check for a new version on http://www.codeproject.com/Articles/1096861/DIY-electronic-RFID-Door-Lock-with-Battery-Backup
-    
+
 **************************************************************************/
 
 #include "PN532.h"
@@ -284,8 +284,8 @@ bool PN532::SwitchOffRfField()
     pinState[4] (10) = P34   *** RESERVED (Must be set) ***
     pinState[5] (20) = P35   Can be used as GPIO
 
-    This function is not used. The original intention was to drive a LED that 
-    is connected to the PN532 board. But the pins deliver so few current 
+    This function is not used. The original intention was to drive a LED that
+    is connected to the PN532 board. But the pins deliver so few current
     that a connected LED is very dark. (even if connected without resistor!)
     Additionally the red LED cannot be connected to the PN532 because it should
     flash if there is a communication error with the PN532. But if there is a
@@ -328,7 +328,7 @@ bool PN532::WriteGPIO(bool P30, bool P31, bool P33, bool P35)
     param u8_UidBuffer  Pointer to an 8 byte buffer that will be populated with the card's UID (4 or 7 bytes)
     param pu8_UidLength Pointer to the variable that will hold the length of the card's UID.
     param pe_CardType   Pointer to the variable that will hold if the card is a Desfire card
-    
+
     returns false only on error!
     returns true and *UidLength = 0 if no card was found
     returns true and *UidLength > 0 if a card has been read successfully
@@ -348,7 +348,7 @@ bool PN532::ReadPassiveTargetID(byte *u8_UidBuffer, byte *pu8_UidLength, eCardTy
     if (!SendCommandCheckAck(mu8_PacketBuffer, 3))
         return false; // Error (no valid ACK received or timeout)
 
-    /* 
+    /*
     ISO14443A card response:
     mu8_PacketBuffer Description
     -------------------------------------------------------
@@ -428,7 +428,7 @@ bool PN532::ReadPassiveTargetID(byte *u8_UidBuffer, byte *pu8_UidLength, eCardTy
 
 /**************************************************************************
     The goal of this command is to select the target. (Initialization, anti-collision loop and Selection)
-    If the target is already selected, no action is performed and Status OK is returned. 
+    If the target is already selected, no action is performed and Status OK is returned.
 **************************************************************************/
 bool PN532::SelectCard()
 {
@@ -452,8 +452,8 @@ bool PN532::SelectCard()
 }
 
 /**************************************************************************
-    The goal of this command is to deselect the target. 
-    The PN532 keeps all the information relative to this target (also certain error status).  
+    The goal of this command is to deselect the target.
+    The PN532 keeps all the information relative to this target (also certain error status).
     This function is required due to a stupid behaviour with Mifare Classic:
     When AuthenticateDataBlock() has failed for a sector, you also get an
     authentication error for the next sector although you have passed the correct key.
@@ -483,8 +483,8 @@ bool PN532::DeselectCard()
 
 /**************************************************************************
     The goal of this command is to release the target.
-    Releasing a target means that the host controller has finished the communication with 
-    the target, so the PN532 erases all the information relative to it. 
+    Releasing a target means that the host controller has finished the communication with
+    the target, so the PN532 erases all the information relative to it.
 **************************************************************************/
 bool PN532::ReleaseCard()
 {
@@ -685,7 +685,7 @@ bool PN532::WaitReady()
     param cmd       Pointer to the command buffer
     param cmdlen    The size of the command in bytes
 
-    returns  true  if everything is OK, 
+    returns  true  if everything is OK,
              false if timeout occured before an ACK was recieved
 **************************************************************************/
 bool PN532::SendCommandCheckAck(byte *cmd, byte cmdlen)

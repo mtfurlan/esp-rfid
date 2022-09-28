@@ -200,7 +200,7 @@ function listhardware() {
       document.getElementById("lockType"+i).value = config.hardware["relay"+i].ltype;
       document.getElementById("typerly"+i).value = config.hardware["relay"+i].rtype;
       document.getElementById("delay"+i).value = config.hardware["relay"+i].rtime;
-    }  
+    }
   }
   handleReader();
   handleLock();
@@ -256,7 +256,7 @@ function savehardware() {
   config.hardware.accessdeniedpin = parseInt(document.getElementById("accessdeniedpin").value);
   config.hardware.beeperpin = parseInt(document.getElementById("beeperpin").value);
   config.hardware.ledwaitingpin = parseInt(document.getElementById("ledwaitingpin").value);
-  config.hardware["numrelays"] = numRelays; 
+  config.hardware["numrelays"] = numRelays;
 
   for (var i = 2; i<=numRelays; i++)
   {
@@ -264,7 +264,7 @@ function savehardware() {
     config.hardware["relay"+i].ltype = document.getElementById("lockType"+i).value;
     config.hardware["relay"+i].rtype = document.getElementById("typerly"+i).value;
     config.hardware["relay"+i].rtime = document.getElementById("delay"+i).value;
-  }  
+  }
   uncommited();
 }
 
@@ -311,7 +311,7 @@ function savemqtt() {
     }
     else{
       config.mqtt.enabled = 0;
-    } 
+    }
     config.mqtt.host     = document.getElementById("mqtthost").value;
     config.mqtt.port     = parseInt(document.getElementById("mqttport").value);
     config.mqtt.topic    = document.getElementById("mqtttopic").value;
@@ -324,14 +324,14 @@ function savemqtt() {
     }
     else{
         config.mqtt.mqttlog = 0;
-    } 
+    }
     config.mqtt.mqttha = 0;
     if (parseInt($("input[name=\"mqttha\"]:checked").val()) === 1) {
         config.mqtt.mqttha = 1;
     }
     else{
         config.mqtt.mqttha = 0;
-    } 
+    }
     uncommited();
 }
 
@@ -594,7 +594,7 @@ function listmqtt() {
     if (config.mqtt.mqttha === 1) {
       $("input[name=\"mqttha\"][value=\"1\"]").prop("checked", true);
     }
-    
+
 }
 
 function savelogsettings() {
@@ -604,7 +604,7 @@ function savelogsettings() {
   }
   else{
     config.logmaintenance.enabled = 0;
-  } 
+  }
   config.logmaintenance.rolloverkb     = document.getElementById("rolloverkb").value;
   config.logmaintenance.maxlogfilesnumber     = parseInt(document.getElementById("maxlogfilesnumber").value);
   config.logmaintenance.spiffwatch = 0;
@@ -613,7 +613,7 @@ function savelogsettings() {
   }
   else{
       config.logmaintenance.spiffwatch = 0;
-  } 
+  }
   uncommited();
 }
 
@@ -621,17 +621,17 @@ function listlogsettings() {
 
   // downstream compatibility
 
- if (!(config.hasOwnProperty("logmaintenance"))) 
+ if (!(config.hasOwnProperty("logmaintenance")))
   {
     logmaintenanceJson =
-    { 
+    {
       "enabled": 0,
       "rolloverkb": "10",
       "maxlogfilesnumber": 5,
       "spiffwatch": 0
     };
 
-    config["logmaintenance"] = logmaintenanceJson; 
+    config["logmaintenance"] = logmaintenanceJson;
   }
 
 
@@ -643,7 +643,7 @@ function listlogsettings() {
   if (config.logmaintenance.spiffwatch === 1) {
       $("input[name=\"spiffwatch\"][value=\"1\"]").prop("checked", true);
   }
- 
+
 }
 
 function getFileList() {
@@ -720,7 +720,7 @@ function getnextpage(mode) {
     var commandtosend = {};
     commandtosend.command = mode;
     commandtosend.page = page;
-    if ((mode === "geteventlog") || (mode === "getlatestlog")) { 
+    if ((mode === "geteventlog") || (mode === "getlatestlog")) {
       commandtosend.filename = theCurrentLogFile;
     }
     websock.send(JSON.stringify(commandtosend));
@@ -968,13 +968,13 @@ function initFileListTable() {
         {
           "name": "filename",
           "title": "File Type",
-          "parser": function(value) 
+          "parser": function(value)
           {
-            if (value === "/latestlog.json") 
+            if (value === "/latestlog.json")
             {
               return("Main Access Log");
             }
-            if (value === "/eventlog.json") 
+            if (value === "/eventlog.json")
             {
               return("Main Event Log");
             }
@@ -1008,14 +1008,14 @@ function initFileListTable() {
           "name":"filename",
           "title":"Action",
           "type":"text",
-          "formatter": function (value) 
+          "formatter": function (value)
           {
             var actions = $('<div/>')
 
             var user_button = ($('<a/>', {'class':'btn btn-sm btn-default','filename':value})
                 .append($('<span/>', {'class': 'glyphicon glyphicon-trash'}))
                 .on("click", this, deletefile))
-                .appendTo(actions); 
+                .appendTo(actions);
             var user_button = ($('<a/>', {'class':'btn btn-sm btn-default','filename':value})
                 .append($('<span/>', {'class': 'glyphicon glyphicon-search'}))
                 .on("click", this, viewfile))
@@ -1024,15 +1024,15 @@ function initFileListTable() {
                 .append($('<span/>', {'class': 'glyphicon glyphicon-resize-full'}))
                 .on("click", this, splitfile))
                 .appendTo(actions);
-            
+
             if ( (value === "/latestlog.json") || (value === "/eventlog.json") )
             {
               var user_button = ($('<a/>', {'class':'btn btn-sm btn-default','filename':value})
               .append($('<span/>', {'class': 'glyphicon glyphicon-refresh'}))
               .on("click", this, rollover))
               .appendTo(actions);
-            } 
-            
+            }
+
 
 
             return actions;
@@ -1044,15 +1044,15 @@ function initFileListTable() {
       rows: data
     });
     function rollover(e)
-    { 
+    {
       websock.send("{\"command\":\"logMaintenance\" , \"action\":\"rollover\", \"filename\":\"" + this.getAttribute('filename') + "\"}");
     }
     function splitfile(e)
-    { 
+    {
       websock.send("{\"command\":\"logMaintenance\" , \"action\":\"split\", \"filename\":\"" + this.getAttribute('filename') + "\"}");
     }
     function viewfile(e)
-    { 
+    {
       theCurrentLogFile = this.getAttribute('filename');
       if (theCurrentLogFile.indexOf("latestlog") >= 0)
       {
@@ -1065,7 +1065,7 @@ function initFileListTable() {
 
     }
     function deletefile(e)
-    { 
+    {
       if (confirm("Really delete " + this.getAttribute('filename') + " ? This can not be undone!"))
       {
         websock.send("{\"command\":\"logMaintenance\" , \"action\":\"delete\", \"filename\":\"" + this.getAttribute('filename') + "\"}");
@@ -1443,11 +1443,11 @@ function initUserTable() {
   });
 
   ft=FooTable.get('#usertable');
-  
+
 
   for (var i=2; i<= maxNumRelays; i++)
   {
-    if (i<= numRelays) 
+    if (i<= numRelays)
     {
       //FooTable.get('#usertable').draw();
       ft.columns.get("acctype"+i).visible=true;
@@ -1455,7 +1455,7 @@ function initUserTable() {
     else
     {
       ft.columns.get("acctype"+i).visible=false;
-    }  
+    }
     ft.draw();
   }
 }
@@ -1570,8 +1570,8 @@ function socketMessageListener(evt) {
         }
         break;
       case "eventlist":
-        document.getElementById("saveeventlogbtn").disabled=true; 
-        document.getElementById("cleareventlogbtn").disabled=true; 
+        document.getElementById("saveeventlogbtn").disabled=true;
+        document.getElementById("cleareventlogbtn").disabled=true;
         if (page < haspages && obj.result === true) {
           getnextpage("geteventlog");
         } else if (page === haspages) {
@@ -1581,23 +1581,23 @@ function socketMessageListener(evt) {
           // others need to be done from the maintenance section
           if (theCurrentLogFile === "/eventlog.json")
           {
-            document.getElementById("cleareventlogbtn").disabled=false; 
-          } 
+            document.getElementById("cleareventlogbtn").disabled=false;
+          }
           document.getElementById("loading-img").style.display = "none";
         }
         break;
       case "latestlist":
-        document.getElementById("savelatestlogbtn").disabled=true; 
-        document.getElementById("clearlatestlogbtn").disabled=true; 
+        document.getElementById("savelatestlogbtn").disabled=true;
+        document.getElementById("clearlatestlogbtn").disabled=true;
         if (page < haspages && obj.result === true) {
           getnextpage("getlatestlog");
         } else if (page === haspages) {
           initLatestLogTable();
-          document.getElementById("savelatestlogbtn").disabled=false; 
+          document.getElementById("savelatestlogbtn").disabled=false;
           if (theCurrentLogFile === "/latestlog.json")
           {
-            document.getElementById("clearlatestlogbtn").disabled=false; 
-          } 
+            document.getElementById("clearlatestlogbtn").disabled=false;
+          }
           document.getElementById("loading-img").style.display = "none";
         }
         break;
@@ -1610,12 +1610,12 @@ function socketMessageListener(evt) {
           }
           break;
         case "logfileMaintenance":
-          if (obj.result === false) 
+          if (obj.result === false)
           {
             if (obj.hasOwnProperty("message"))
             {
               alert (obj.message);
-            } else 
+            } else
             {
               alert ("Operation failed")
             }
@@ -1679,7 +1679,7 @@ function changeRelayNumber(){
 
   // downstream config compatibility
 
-  config.hardware["numrelays"] = numRelays; 
+  config.hardware["numrelays"] = numRelays;
 
   // add the missing form elements
 
@@ -1693,22 +1693,22 @@ function updateRelayForm(){
   {
 
     // downstream compatibility
-    if (!(config.hardware.hasOwnProperty("relay"+i))) 
+    if (!(config.hardware.hasOwnProperty("relay"+i)))
     {
       var relayJson =
-      { 
+      {
         "rtype": 1,
         "ltype": 0,
         "rpin": 4,
         "rtime": 400,
       };
-      config.hardware["relay"+i] = relayJson; 
+      config.hardware["relay"+i] = relayJson;
     }
-    
+
 
     var relayForm = $("#relayform");
     var relayparent= $("#relayformparent");
-    if (i<= numRelays) 
+    if (i<= numRelays)
     {
       var existingRelayForm = document.getElementById("relayform" + i);
       if (!(existingRelayForm))
@@ -1745,7 +1745,7 @@ function updateUserModalForm(){
   {
     var accTypeForm = $("#useracctype");
     var accParent= $("#usermodalbody");
-    if (i<= numRelays) 
+    if (i<= numRelays)
     {
       var existingaccTypeForm = document.getElementById("useracctype" + i);
       if (!(existingaccTypeForm))
