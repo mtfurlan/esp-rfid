@@ -1,7 +1,7 @@
 name: EditorConfig Checker
 
 on:
-  push:
+  pull_request:
 
 jobs:
   editorconfig:
