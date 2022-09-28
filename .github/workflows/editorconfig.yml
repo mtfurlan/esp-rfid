@@ -5,8 +5,9 @@ on:
 
 jobs:
   editorconfig:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: editorconfig-checker/action-editorconfig-checker@main
-      - run: editorconfig-checker
+      - name: automerge
+        uses: "zbeekman/EditorConfig-Action@v1.1.0"
+        env:
+          ALWAYS_LINT_ALL_FILES: false # This is the default
