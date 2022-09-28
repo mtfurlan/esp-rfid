@@ -1,4 +1,4 @@
-unsigned int beeperInterval = 0;
+  unsigned int beeperInterval = 0;
 unsigned int beeperOffTime = 0;
 
 void beeperBeep()
