@@ -1,11 +1,14 @@
-workflow "PR Audit" {
-  on = "pull_request"
-  resolves = ["EC Audit PR"]
-}
+name: EditorConfig Checker
 
-action "EC Audit PR" {
-  uses = "zbeekman/EditorConfig-Action@v1.1.0"
-  env = {
-    ALWAYS_LINT_ALL_FILES = "false" # This is the default
-  }
-}
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  editorconfig:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: editorconfig-checker/action-editorconfig-checker@main
+      - run: editorconfig-checker
