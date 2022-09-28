@@ -7,7 +7,7 @@ jobs:
   editorconfig:
     runs-on: ubuntu-latest
     steps:
-      - name: automerge
-        uses: "zbeekman/EditorConfig-Action@v1.1.0"
-        env:
-          ALWAYS_LINT_ALL_FILES: false # This is the default
+      - uses: actions/checkout@v2
+      - uses: snow-actions/eclint@v1.0.1
+        with:
+          args: 'check'
