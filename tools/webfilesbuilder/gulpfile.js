@@ -27,23 +27,23 @@ function espRfidJsGz() {
 function espRfidJsGzh(cb) {
     var source = "../../src/websrc/gzipped/js/" + "esprfid.js.gz";
     var destination = "../../src/webh/" + "esprfid.js.gz.h";
- 
+
     var wstream = fs.createWriteStream(destination);
     wstream.on('error', function (err) {
         console.log(err);
     });
- 
+
     var data = fs.readFileSync(source);
- 
+
     wstream.write('#define esprfid_js_gz_len ' + data.length + '\n');
     wstream.write('const uint8_t esprfid_js_gz[] PROGMEM = {')
- 
+
     for (i=0; i<data.length; i++) {
         if (i % 1000 == 0) wstream.write("\n");
         wstream.write('0x' + ('00' + data[i].toString(16)).slice(-2));
         if (i<data.length-1) wstream.write(',');
     }
- 
+
     wstream.write('\n};')
     wstream.end();
     cb();
@@ -67,23 +67,23 @@ function scriptsConcat() {
 function scripts(cb) {
     var source = "../../src/websrc/gzipped/js/" + "required.js.gz";
     var destination = "../../src/webh/" + "required.js.gz.h";
- 
+
     var wstream = fs.createWriteStream(destination);
     wstream.on('error', function (err) {
         console.log(err);
     });
- 
+
     var data = fs.readFileSync(source);
- 
+
     wstream.write('#define required_js_gz_len ' + data.length + '\n');
     wstream.write('const uint8_t required_js_gz[] PROGMEM = {')
- 
+
     for (i=0; i<data.length; i++) {
         if (i % 1000 == 0) wstream.write("\n");
         wstream.write('0x' + ('00' + data[i].toString(16)).slice(-2));
         if (i<data.length-1) wstream.write(',');
     }
- 
+
     wstream.write('\n};')
     wstream.end();
     cb();
@@ -107,26 +107,26 @@ function stylesConcat() {
 function styles(cb) {
     var source = "../../src/websrc/gzipped/css/" + "required.css.gz";
     var destination = "../../src/webh/" + "required.css.gz.h";
- 
+
     var wstream = fs.createWriteStream(destination);
     wstream.on('error', function (err) {
         console.log(err);
     });
- 
+
     var data = fs.readFileSync(source);
- 
+
     wstream.write('#define required_css_gz_len ' + data.length + '\n');
     wstream.write('const uint8_t required_css_gz[] PROGMEM = {')
- 
+
     for (i=0; i<data.length; i++) {
         if (i % 1000 == 0) wstream.write("\n");
         wstream.write('0x' + ('00' + data[i].toString(16)).slice(-2));
         if (i<data.length-1) wstream.write(',');
     }
- 
+
     wstream.write('\n};')
     wstream.end();
-    cb();	
+    cb();
 }
 
 function fontgz() {
@@ -149,7 +149,7 @@ function fonts() {
 			var data = file.contents;
             wstream.write("#define " + filename.replace(/\.|-/g, "_") + "_len " + data.length + "\n");
             wstream.write("const uint8_t " + filename.replace(/\.|-/g, "_") + "[] PROGMEM = {")
-            
+
             for (i = 0; i < data.length; i++) {
                 if (i % 1000 == 0) wstream.write("\n");
                 wstream.write('0x' + ('00' + data[i].toString(16)).slice(-2));
@@ -192,7 +192,7 @@ function htmls() {
             var data = file.contents;
             wstream.write("#define " + filename.replace(/\.|-/g, "_") + "_len " + data.length + "\n");
             wstream.write("const uint8_t " + filename.replace(/\.|-/g, "_") + "[] PROGMEM = {")
-            
+
             for (i = 0; i < data.length; i++) {
                 if (i % 1000 == 0) wstream.write("\n");
                 wstream.write('0x' + ('00' + data[i].toString(16)).slice(-2));

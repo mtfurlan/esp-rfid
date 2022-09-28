@@ -376,7 +376,7 @@ void onMqttMessage(char *topic, char *payload, AsyncMqttClientMessageProperties 
 	{
 		return;
 	}
-	
+
 	const char *ipadr = mqttIncomingJson["doorip"];
 	String espIp = WiFi.localIP().toString();
 	if (!((strcmp(ipadr, espIp.c_str()) == 0) && (ipadr != NULL)))
@@ -487,7 +487,7 @@ void processMqttMessage(MqttMessage *incomingMessage)
 		f.close();
 		mqttPublishAck(command);
 	}
-	
+
 	free(incomingMessage);
 	return;
 }

@@ -1,5 +1,5 @@
-unsigned int beeperInterval = 0;
-unsigned int beeperOffTime = 0;
+  unsigned int beeperInterval = 0;
+ unsigned int beeperOffTime = 0;
 
 void beeperBeep()
 {
@@ -15,8 +15,8 @@ void beeperBeep()
 		}
 		else if (beeperInterval != 0)
 		{
-			int beeperState = digitalRead(config.beeperpin); 
-			if (currentMillis - previousMillis >= beeperInterval) 
+			int beeperState = digitalRead(config.beeperpin);
+			if (currentMillis - previousMillis >= beeperInterval)
 			{
     			previousMillis = currentMillis;
 				if (beeperState == BEEPERon) {

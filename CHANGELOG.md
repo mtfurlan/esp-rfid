@@ -21,7 +21,7 @@ All notable changes to this project will be documented in this file.
 #### Added
 - [firmware] Support for Door Status tracking with log and mqtt options @nardev
 - [firmware] adding mqtt_publish_info, generateUid functions @nardev
-- [firmware] MQTT functionality is greatly improved thanks to @marelab 
+- [firmware] MQTT functionality is greatly improved thanks to @marelab
 
 Reading all user data over MQTT
 Sending User data to RFID-DOOR/ESP-RFID over MQTT
